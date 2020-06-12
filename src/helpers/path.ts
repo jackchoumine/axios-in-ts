@@ -2,7 +2,7 @@
  * @Description: 处理 url
  * @Date: 2020-06-13 00:34:36
  * @Author: JackChouMine
- * @LastEditTime: 2020-06-13 01:52:30
+ * @LastEditTime: 2020-06-13 02:39:22
  * @LastEditors: JackChouMine
  */
 
@@ -16,11 +16,14 @@ function encode(val: string): string {
   const encodeStr = encodeURIComponent(val)
     .replace(/%40/g, '@') //替换特殊字符
     .replace(/%24/g, '$')
+    // .replace(/%22/g, '"')//NOTE URL"不合法
     .replace(/%20/g, '+')
     .replace(/%3A/gi, ':')
     .replace(/%2C/gi, ',')
     .replace(/%5B/gi, '[')
     .replace(/%5D/gi, ']')
+    .replace(/%7B/gi, '{')
+    .replace(/%7D/gi, '}')
   return encodeStr
 }
 
