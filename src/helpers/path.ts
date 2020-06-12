@@ -2,7 +2,7 @@
  * @Description: 处理 url
  * @Date: 2020-06-13 00:34:36
  * @Author: JackChouMine
- * @LastEditTime: 2020-06-13 01:43:33
+ * @LastEditTime: 2020-06-13 01:52:30
  * @LastEditors: JackChouMine
  */
 
@@ -29,7 +29,7 @@ function encode(val: string): string {
  * @param path 请求 path
  * @param params 查询参数
  */
-export function buildUrl(path: string, params?: any): string {
+export function buildPath(path: string, params?: any): string {
   if (!params) {
     return path
   }
