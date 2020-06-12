@@ -2,7 +2,7 @@
  * @Description: express 服务器入口
  * @Date: 2020-06-11 23:55:50
  * @Author: JackChouMine
- * @LastEditTime: 2020-06-12 01:43:14
+ * @LastEditTime: 2020-06-13 02:25:20
  * @LastEditors: JackChouMine
  */
 const express = require('express')
@@ -15,13 +15,15 @@ const WebpackConfig = require('./webpack.config')
 const app = express()
 const compiler = webpack(WebpackConfig)
 
-app.use(webpackDevMiddleware(compiler, {
-  publicPath: '/__build__/',
-  stats: {
-    colors: true,
-    chunks: false
-  }
-}))
+app.use(
+  webpackDevMiddleware(compiler, {
+    publicPath: '/__build__/',
+    stats: {
+      colors: true,
+      chunks: false
+    }
+  })
+)
 app.use(webpackHotMiddleware(compiler))
 app.use(express.static(__dirname))
 app.use(bodyParse.json())
@@ -33,6 +35,9 @@ router.get('/simple/test', (req, res) => {
   res.json({
     data: 'hello ts'
   })
+})
+router.get('/base/test', (req, res) => {
+  res.json(req.query)
 })
 
 app.use(router)
