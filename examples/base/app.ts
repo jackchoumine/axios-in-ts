@@ -2,17 +2,23 @@
  * @Description: 基础Demo
  * @Date: 2020-06-13 02:07:49
  * @Author: JackChouMine
- * @LastEditTime: 2020-06-14 02:57:54
+ * @LastEditTime: 2020-06-14 05:17:55
  * @LastEditors: JackChouMine
  */
 import http from '../../src/index'
-import { FORMERR } from 'dns'
 http({
   path: '/base/test',
   params: {
     students: ['jack', '小明']
   }
 })
+  .then(res => {
+    console.log(res)
+  })
+  .catch(e => {
+    console.log(e)
+  })
+
 http({
   path: '/base/test?test=test',
   params: {
@@ -22,6 +28,13 @@ http({
     }
   }
 })
+  .then(res => {
+    console.log(res)
+  })
+  .catch(e => {
+    console.log(e)
+  })
+
 const date = new Date()
 http({
   path: '/base/test#hash',
@@ -29,6 +42,13 @@ http({
     date
   }
 })
+  .then(res => {
+    console.log(res)
+  })
+  .catch(e => {
+    console.log(e)
+  })
+
 http({
   path: '/base/test#hase?',
   params: {
@@ -36,6 +56,13 @@ http({
     bar: [1, 'foo']
   }
 })
+  .then(res => {
+    console.log(res)
+  })
+  .catch(e => {
+    console.log(e)
+  })
+
 http({
   path: '/base/post',
   method: 'post',
@@ -48,6 +75,12 @@ http({
     b: [1, 2, 3, 4]
   }
 })
+  .then(res => {
+    console.log(res)
+  })
+  .catch(e => {
+    console.log(e)
+  })
 
 // 发送 application/x-www-form-urlencoded
 const searchParams = new URLSearchParams('name=jack&age=23') // todo 这是什么
@@ -56,6 +89,12 @@ http({
   method: 'post',
   data: searchParams
 })
+  .then(res => {
+    console.log(res)
+  })
+  .catch(e => {
+    console.log(e)
+  })
 
 // 发送二进制数据
 http({
@@ -63,6 +102,13 @@ http({
   method: 'post',
   data: new Int32Array([1, 10])
 })
+  .then(res => {
+    console.log(res)
+  })
+  .catch(e => {
+    console.log(e)
+  })
+
 // 发送 multipart/form-data 格式的数据，
 const formData = new FormData() // TODO
 formData.append('name', 'jack')
@@ -76,3 +122,9 @@ http({
   method: 'post',
   data: formData
 })
+  .then(res => {
+    console.log(res)
+  })
+  .catch(e => {
+    console.log(e)
+  })
