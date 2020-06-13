@@ -2,11 +2,12 @@
  * @Description: 请求方法
  * @Date: 2020-06-11 23:36:07
  * @Author: JackChouMine
- * @LastEditTime: 2020-06-14 06:07:35
+ * @LastEditTime: 2020-06-14 06:58:31
  * @LastEditors: JackChouMine
  */
 import { AxiosRequestConfig, HttpPromise, HttpResponse } from './types'
 import { parseHeaders } from './helpers/headers'
+import { createError } from './helpers/error'
 export default function xhr(config: AxiosRequestConfig): HttpPromise {
   return new Promise((resolve, reject) => {
     // 默认 GET 方法
@@ -55,11 +56,12 @@ export default function xhr(config: AxiosRequestConfig): HttpPromise {
 
     // 错误处理，网络错误 或者非法url
     request.onerror = () => {
-      reject(new Error(`Request error with ${request.status}`))
+      reject(createError('request error', true, null, config))
     }
 
     request.ontimeout = () => {
-      reject(new Error(`Timeout of ${timeout}`))
+      // ECONNABORTED 103   /* Software caused connection abort */
+      reject(createError(`Timeout of ${timeout}`, true, 'ECONNABORTED', config))
     }
 
     /**
@@ -69,7 +71,15 @@ export default function xhr(config: AxiosRequestConfig): HttpPromise {
       if (res.status >= 200 && res.status < 300) {
         resolve(res)
       } else {
-        reject(new Error(`Request failed with status ${res.status}`))
+        const error = createError(
+          `Request failed with status ${res.status}`,
+          true,
+          null,
+          config,
+          request,
+          res
+        )
+        reject(error)
       }
     }
   })

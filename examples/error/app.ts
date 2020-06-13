@@ -2,10 +2,10 @@
  * @Description: 错误请求
  * @Date: 2020-06-14 04:50:03
  * @Author: JackChouMine
- * @LastEditTime: 2020-06-14 05:50:52
+ * @LastEditTime: 2020-06-14 07:17:04
  * @LastEditors: JackChouMine
  */
-import http from '../../src/index'
+import http, { HttpRequestError } from '../../src/index'
 http({
   path: '/error/404',
   method: 'post',
@@ -15,7 +15,7 @@ http({
     console.log(res)
   })
   .catch(e => {
-    console.log(e)
+    console.log('**********', JSON.stringify(e, [], 1))
   })
 
 // 模拟网络错误
@@ -43,8 +43,13 @@ http({
   .then(res => {
     console.log(res)
   })
-  .catch(e => {
-    console.log(e)
+  .catch((e: HttpRequestError) => {
+    console.log('message', e.message)
+    console.log('isHttpError', e.isHttpError)
+    console.log('code', e.code)
+    console.log('config', e.config)
+    console.log('request', e.request)
+    console.log('response', e.response)
   })
 
 http({

@@ -1,11 +1,8 @@
-import { inflate } from 'zlib'
-import { isMainThread } from 'worker_threads'
-
 /*
  * @Description: 类型定义入口
  * @Date: 2020-06-11 23:27:45
  * @Author: JackChouMine
- * @LastEditTime: 2020-06-14 04:40:20
+ * @LastEditTime: 2020-06-14 06:14:05
  * @LastEditors: JackChouMine
  */
 export type Method = 'get' | 'GET' | 'post' | 'delete' | 'put' | 'options' | 'head' | 'patch'
@@ -35,3 +32,11 @@ export interface HttpResponse {
  *
  */
 export interface HttpPromise extends Promise<HttpResponse> {}
+
+export interface HttpRequestError extends Error {
+  isHttpError: boolean
+  config: AxiosRequestConfig
+  code?: string | null
+  request?: any
+  response?: HttpResponse
+}
