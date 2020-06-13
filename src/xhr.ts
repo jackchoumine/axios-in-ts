@@ -2,11 +2,11 @@
  * @Description: 请求方法
  * @Date: 2020-06-11 23:36:07
  * @Author: JackChouMine
- * @LastEditTime: 2020-06-14 03:44:56
+ * @LastEditTime: 2020-06-14 04:14:36
  * @LastEditors: JackChouMine
  */
 import { AxiosRequestConfig, HttpPromise, HttpResponse } from './types'
-import { resolve } from 'dns'
+import { parseHeaders } from './helpers/headers'
 export default function xhr(config: AxiosRequestConfig): HttpPromise {
   return new Promise(resolve => {
     // 默认 GET 方法
@@ -29,7 +29,7 @@ export default function xhr(config: AxiosRequestConfig): HttpPromise {
         data: responseData,
         status: request.status,
         statusText: request.statusText,
-        headers: responseHeaders,
+        headers: parseHeaders(responseHeaders),
         config,
         request
       }
