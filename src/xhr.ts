@@ -2,7 +2,7 @@
  * @Description: 请求方法
  * @Date: 2020-06-11 23:36:07
  * @Author: JackChouMine
- * @LastEditTime: 2020-06-14 06:06:36
+ * @LastEditTime: 2020-06-14 06:07:35
  * @LastEditors: JackChouMine
  */
 import { AxiosRequestConfig, HttpPromise, HttpResponse } from './types'
