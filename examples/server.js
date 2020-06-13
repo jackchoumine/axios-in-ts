@@ -2,7 +2,7 @@
  * @Description: express 服务器入口
  * @Date: 2020-06-11 23:55:50
  * @Author: JackChouMine
- * @LastEditTime: 2020-06-13 02:25:20
+ * @LastEditTime: 2020-06-14 01:53:34
  * @LastEditors: JackChouMine
  */
 const express = require('express')
@@ -39,7 +39,20 @@ router.get('/simple/test', (req, res) => {
 router.get('/base/test', (req, res) => {
   res.json(req.query)
 })
-
+router.post('/base/post', (req, res) => {
+  console.log(req.body)
+  res.json(req.body)
+})
+router.post('/base/buffer', (req, res) => {
+  const data = []
+  req.on('data', chunk => {
+    if (chunk) data.push(chunk)
+  })
+  req.on('end', () => {
+    const buf = Buffer.concat(data)
+    res.json(buf.toJSON())
+  })
+})
 app.use(router)
 
 const port = process.env.PORT || 8080
