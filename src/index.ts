@@ -2,17 +2,17 @@
  * @Description: 入口文件
  * @Date: 2020-06-11 22:39:49
  * @Author: JackChouMine
- * @LastEditTime: 2020-06-14 02:18:46
+ * @LastEditTime: 2020-06-14 03:30:00
  * @LastEditors: JackChouMine
  */
-import { AxiosRequestConfig } from './types'
+import { AxiosRequestConfig, HttpPromise } from './types'
 import xhr from './xhr'
 import { transformRequest } from './helpers/data'
 import { buildPath } from './helpers/path'
 import { processHeaders } from './helpers/headers'
-function http(config: AxiosRequestConfig): void {
+function http(config: AxiosRequestConfig): HttpPromise {
   processConfig(config)
-  xhr(config)
+  return xhr(config)
 }
 function processConfig(config: AxiosRequestConfig): void {
   config.path = transformPath(config)
