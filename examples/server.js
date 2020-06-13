@@ -2,7 +2,7 @@
  * @Description: express 服务器入口
  * @Date: 2020-06-11 23:55:50
  * @Author: JackChouMine
- * @LastEditTime: 2020-06-14 01:53:34
+ * @LastEditTime: 2020-06-14 05:48:39
  * @LastEditors: JackChouMine
  */
 const express = require('express')
@@ -53,6 +53,26 @@ router.post('/base/buffer', (req, res) => {
     res.json(buf.toJSON())
   })
 })
+
+router.post('/error/timeout', (req, res) => {
+  setTimeout(() => {
+    res.json(req.body)
+  }, 3000)
+})
+
+router.post('/error/timeout', (req, res) => {
+  setTimeout(() => {
+    res.json(req.body)
+  }, 3000)
+})
+router.post('/error/net-error', (req, res) => {
+  res.json(req.body)
+})
+router.post('/error/500', (req, res) => {
+  res.status(500)
+  res.json('500')
+})
+
 app.use(router)
 
 const port = process.env.PORT || 8080

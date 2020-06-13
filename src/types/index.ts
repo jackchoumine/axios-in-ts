@@ -5,7 +5,7 @@ import { isMainThread } from 'worker_threads'
  * @Description: 类型定义入口
  * @Date: 2020-06-11 23:27:45
  * @Author: JackChouMine
- * @LastEditTime: 2020-06-14 03:12:28
+ * @LastEditTime: 2020-06-14 04:40:20
  * @LastEditors: JackChouMine
  */
 export type Method = 'get' | 'GET' | 'post' | 'delete' | 'put' | 'options' | 'head' | 'patch'
@@ -16,6 +16,7 @@ export interface AxiosRequestConfig {
   params?: any
   headers?: any
   responseType?: XMLHttpRequestResponseType // todo 为何要这样定义
+  timeout?: number
 }
 /**
  * HTTP 响应
