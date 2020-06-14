@@ -2,12 +2,12 @@
  * @Description: 请求方法
  * @Date: 2020-06-11 23:36:07
  * @Author: JackChouMine
- * @LastEditTime: 2020-06-14 06:58:31
+ * @LastEditTime: 2020-06-14 23:09:55
  * @LastEditors: JackChouMine
  */
-import { AxiosRequestConfig, HttpPromise, HttpResponse } from './types'
-import { parseHeaders } from './helpers/headers'
-import { createError } from './helpers/error'
+import { AxiosRequestConfig, HttpPromise, HttpResponse } from '../types'
+import { parseHeaders } from '../helpers/headers'
+import { createError } from '../helpers/error'
 export default function xhr(config: AxiosRequestConfig): HttpPromise {
   return new Promise((resolve, reject) => {
     // 默认 GET 方法
@@ -25,7 +25,7 @@ export default function xhr(config: AxiosRequestConfig): HttpPromise {
     }
 
     // NOTE xhr 要求方法大写
-    request.open(method.toUpperCase(), path, true) // 异步
+    request.open(method.toUpperCase(), path!, true) // 异步
 
     // 设置请求头，必须在 open 之后
     Object.keys(headers).forEach(key => {

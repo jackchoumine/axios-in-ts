@@ -2,7 +2,7 @@
  * @Description: express 服务器入口
  * @Date: 2020-06-11 23:55:50
  * @Author: JackChouMine
- * @LastEditTime: 2020-06-14 05:48:39
+ * @LastEditTime: 2020-06-15 01:25:09
  * @LastEditors: JackChouMine
  */
 const express = require('express')
@@ -71,6 +71,19 @@ router.post('/error/net-error', (req, res) => {
 router.post('/error/500', (req, res) => {
   res.status(500)
   res.json('500')
+})
+router.get('/extend/get', (req, res) => {
+  res.json(req.query)
+})
+router.head('/extend/head', (req, res) => {
+  res.json() // NOTE head 用来获取响应头，比如文件下载先获取响应头，得知文件大小，再决定是否下载文件。
+  // head 不该返回消息正文，即使返回，浏览器会忽略
+})
+router.options('/extend/options', (req, res) => {
+  res.json(req.query)
+})
+router.delete('/extend/delete', (req, res) => {
+  res.json(req.query)
 })
 
 app.use(router)
