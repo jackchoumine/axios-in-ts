@@ -2,7 +2,7 @@
  * @Description: 错误
  * @Date: 2020-06-14 06:12:15
  * @Author: JackChouMine
- * @LastEditTime: 2020-06-14 06:59:40
+ * @LastEditTime: 2020-06-15 02:04:50
  * @LastEditors: JackChouMine
  */
 import { AxiosRequestConfig, HttpResponse } from '../types'
@@ -38,8 +38,5 @@ export function createError(
   request?: any,
   response?: HttpResponse
 ) {
-  console.log(message)
-  console.log(isHttpError, code, config, request, response)
-
   return new HttpError(message, isHttpError, code, config, request, response)
 }

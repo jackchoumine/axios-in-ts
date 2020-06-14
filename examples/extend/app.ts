@@ -2,10 +2,10 @@
  * @Description: 基础Demo
  * @Date: 2020-06-13 02:07:49
  * @Author: JackChouMine
- * @LastEditTime: 2020-06-15 01:16:03
+ * @LastEditTime: 2020-06-15 02:09:06
  * @LastEditors: JackChouMine
  */
-import http from '../../src'
+import http, { HttpRequestError } from '../../src'
 
 const date = new Date()
 http({
@@ -35,6 +35,24 @@ http
     console.log(e)
   })
 
+// http
+//   .request('/base/buffer'，{method：'post'})// FIX 不支持这种传参方式
+//   .then(res => {
+//     console.log('http.request(post)', res.data)
+//   })
+//   .catch(e => {
+//     console.log(e)
+//   })
+
+http
+  .patch('/extend/patch', { method: 'patch' })
+  .then(res => {
+    console.log('http.patch', res.data)
+  })
+  .catch((e: HttpRequestError) => {
+    console.log(e.message)
+    console.log(e.isHttpError)
+  })
 // 发送 application/x-www-form-urlencoded
 const searchParams = new URLSearchParams('name=jack&age=23')
 

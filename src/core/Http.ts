@@ -2,14 +2,24 @@
  * @Description: Http 类
  * @Date: 2020-06-14 23:00:01
  * @Author: JackChouMine
- * @LastEditTime: 2020-06-15 00:34:11
+ * @LastEditTime: 2020-06-15 02:00:13
  * @LastEditors: JackChouMine
  */
 import { AxiosRequestConfig, HttpPromise, Method } from '../types'
 import sendHttp from './sendHttp'
 export default class Http {
   // implements HttpInstance {
-  request(config: AxiosRequestConfig): HttpPromise {
+  request(path: any, config?: any): HttpPromise {
+    // FIX 这个实现有问题
+    if (typeof path === 'string') {
+      if (!config) {
+        config = {}
+      }
+      config.path = path
+    } else {
+      // 第一个参数不是字符串，那么就是 config
+      config = path
+    }
     return sendHttp(config)
   }
   get(path: string, config: AxiosRequestConfig): HttpPromise {

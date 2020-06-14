@@ -2,7 +2,7 @@
  * @Description: express 服务器入口
  * @Date: 2020-06-11 23:55:50
  * @Author: JackChouMine
- * @LastEditTime: 2020-06-15 01:25:09
+ * @LastEditTime: 2020-06-15 02:08:47
  * @LastEditors: JackChouMine
  */
 const express = require('express')
@@ -84,6 +84,9 @@ router.options('/extend/options', (req, res) => {
 })
 router.delete('/extend/delete', (req, res) => {
   res.json(req.query)
+})
+router.patch('/extend/patch', (req, res) => {
+  res.json(req.body)
 })
 
 app.use(router)

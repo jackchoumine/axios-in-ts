@@ -2,7 +2,7 @@
  * @Description: 类型定义入口
  * @Date: 2020-06-11 23:27:45
  * @Author: JackChouMine
- * @LastEditTime: 2020-06-14 22:59:03
+ * @LastEditTime: 2020-06-15 01:58:26
  * @LastEditors: JackChouMine
  */
 export type Method = 'get' | 'GET' | 'post' | 'delete' | 'put' | 'options' | 'head' | 'patch'
@@ -56,5 +56,7 @@ export interface Http {
  * 使用接口定义了函数类型，继承了 Http 使其具备了方法成为一个（混合）对象。
  */
 export interface HttpInstance extends Http {
+  // 重载实现两种类型的 request
+  (path: string, config: AxiosRequestConfig): HttpPromise
   (config: AxiosRequestConfig): HttpPromise
 }
